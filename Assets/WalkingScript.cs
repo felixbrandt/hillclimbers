@@ -8,8 +8,8 @@ public class WalkingScript : MonoBehaviour {
 
     public int jumpHeight = 300;
 
-    private Rigidbody2D rb2d;
-    private bool jumping = false;
+    Rigidbody2D rb2d;
+    bool jumping = false;
 
     void Start ()
     {
