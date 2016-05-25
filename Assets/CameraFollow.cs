@@ -21,7 +21,6 @@ public class CameraFollow : MonoBehaviour {
         //player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
-
     bool CheckXMargin()
     {
         // Returns true if the distance between the camera and the player in the x axis is greater than the x margin.
@@ -36,7 +35,7 @@ public class CameraFollow : MonoBehaviour {
     }
 
 
-    void FixedUpdate()
+    void Update()
     {
         TrackPlayer();
     }
