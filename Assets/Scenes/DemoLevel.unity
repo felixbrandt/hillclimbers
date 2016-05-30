@@ -2771,6 +2771,19 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &1673244455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1673244452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd100329dcdbd41dfab18b5e4223b40f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  maxHealth: 100
 --- !u!50 &1673244456
 Rigidbody2D:
   serializedVersion: 2
@@ -2802,6 +2815,17 @@ BoxCollider2D:
   m_Offset: {x: -2.3977735, y: 0.98081356}
   serializedVersion: 2
   m_Size: {x: 17.870157, y: 30.163067}
+--- !u!114 &1673244458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1673244452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5a1f28310fbd4d9088015a9fc37735a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1742925173 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 184822, guid: 2c8b454c46ed98546b47f16849ddbb00, type: 2}
