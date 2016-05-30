@@ -6,6 +6,8 @@ public class ItemController : MonoBehaviour {
 
 	public GameObject[] weapons = new GameObject[2];
 	public GameObject[] tools = new GameObject[2];
+    public PlayerHealth health;
+    public bool damageOverTimeActive;
     public float damage = 0f;
     private Button weaponSprite1;
     private Button weaponSprite2;
@@ -15,6 +17,7 @@ public class ItemController : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
+        health = GetComponent<PlayerHealth>();
         weaponSprite1 = GameObject.Find("HUD/Items/WeaponSlots").GetComponentsInChildren<Button>()[0];
         weaponSprite2 = GameObject.Find("HUD/Items/WeaponSlots").GetComponentsInChildren<Button>()[1];
         toolSprite1 = GameObject.Find("HUD/Items/ToolSlots").GetComponentsInChildren<Button>()[0];
@@ -28,6 +31,18 @@ public class ItemController : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D collider){
+
+
+        if (collider.CompareTag("icicle"))
+        {
+            if (damageOverTimeActive == false)
+            {
+                StartCoroutine("DamageOverTime");
+                damageOverTimeActive = true;
+            }
+            }
+
+
 		if (collider.CompareTag ("weapon")) {
             Debug.Log("entered collider");
             if (weapons [0] == null) {
@@ -74,4 +89,21 @@ public class ItemController : MonoBehaviour {
 			}
 		}
 	}
+
+    void OnTriggerExit2D(Collider2D collider)
+    {
+        damageOverTimeActive = false;
+        StopCoroutine("DamageOverTime");
+    }
+
+    private IEnumerator DamageOverTime()
+    {
+        while (true)
+        {
+            health.TakeDamage(10);
+            yield return new WaitForSeconds(0.5f);
+        }
+    }
+
+    
 }

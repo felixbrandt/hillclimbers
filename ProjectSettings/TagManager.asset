@@ -6,6 +6,7 @@ TagManager:
   tags:
   - weapon
   - tool
+  - icicle
   layers:
   - Default
   - TransparentFX
