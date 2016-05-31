@@ -13,7 +13,7 @@ public class EnemyScript : MonoBehaviour {
 	void Start () {
 		animator = GetComponent<Animator> ();
 		target = GameObject.FindGameObjectWithTag ("Player").transform;
-		base.Start ();
+		//base.Start ();
 	}
 	
 	// Update is called once per frame
@@ -23,7 +23,7 @@ public class EnemyScript : MonoBehaviour {
 	//TODO write base script
 	private void AttemptMove<T>(int xDir,int yDir)
 	{
-		base.AttemptMove<T> (xDir, yDir);
+		//base.AttemptMove<T> (xDir, yDir);
 	}
 	public void MoveEnemy()
 	{
@@ -34,6 +34,6 @@ public class EnemyScript : MonoBehaviour {
 		} else {
 			xDir = target.position.x > transform.position.x ? 1 : -1;
 		}
-		AttemptMove<Player> (xDir, yDir);
+		//AttemptMove<Player> (xDir, yDir);
 	}
 }
