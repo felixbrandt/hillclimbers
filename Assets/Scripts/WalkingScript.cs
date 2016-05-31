@@ -49,6 +49,11 @@ public class WalkingScript : MonoBehaviour {
             //transform.Translate(Vector3.up * Time.deltaTime * jumpHeight);
             rb2d.AddForce(new Vector2(0, jumpHeight));
         }
+
+        if (Input.GetMouseButton(0))
+        {
+            animator.SetTrigger("Attacking");
+        }
 	}
 
     void OnTriggerEnter2D(Collider2D other)
