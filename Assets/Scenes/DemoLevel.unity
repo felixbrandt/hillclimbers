@@ -533,9 +533,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c420c678b5d1494b9b8d139fa2d3760, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 0.5
   foregroundLayer: {fileID: 812255162}
   backgroundLayer: {fileID: 1607653341}
-  player: {fileID: 1078065565}
 --- !u!1 &233519134 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 156508, guid: e3948c546cae4b44daa7b1208cf90f50, type: 2}
@@ -902,6 +902,7 @@ Canvas:
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -1292,7 +1293,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -2
   m_Sprite: {fileID: 21300002, guid: cf9940c1f808afd4bad943fd9d6cbd5a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -3276,9 +3277,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c420c678b5d1494b9b8d139fa2d3760, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 0.5
   foregroundLayer: {fileID: 0}
   backgroundLayer: {fileID: 0}
-  player: {fileID: 0}
 --- !u!1 &1969182875 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 194376, guid: 2c8b454c46ed98546b47f16849ddbb00, type: 2}
