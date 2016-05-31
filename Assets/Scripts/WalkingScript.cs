@@ -17,7 +17,7 @@ public class WalkingScript : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
         if (Input.GetAxis("Horizontal") != 0)
         {
             if (!jumping)
