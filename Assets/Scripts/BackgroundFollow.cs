@@ -2,44 +2,39 @@
 using System.Collections;
 
 public class BackgroundFollow : MonoBehaviour {
-    public float speed = 0.231f;
+    public float speed = 0.005f;
+    public float ratio = 1.25f;
 
 	public GameObject foregroundLayer;
 	public GameObject backgroundLayer;
 
-    private float foregroundWidth;
-    private float backgroundWidth;
+    private Vector3 foregroundStartPosition;
+    private Vector3 backgroundStartPosition;
 
-    private float foregroundInitialY;
-    private float backgroundInitialY;
+    private float saved = 0;
 
 	// Use this for initialization
 	void Start () {
-        foregroundWidth = foregroundLayer.GetComponent<Renderer>().bounds.size.x;
-        backgroundWidth = backgroundLayer.GetComponent<Renderer>().bounds.size.x;
-
-        foregroundInitialY = foregroundLayer.transform.position.y;
-        backgroundInitialY = backgroundLayer.transform.position.y;
-        
-        Debug.Log(foregroundWidth);
-        Debug.Log(backgroundWidth);
+        // MAYBE: Add offset saving
+        foregroundStartPosition = foregroundLayer.transform.position;
+        backgroundStartPosition = backgroundLayer.transform.position;
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		Vector3 tempVector = backgroundLayer.transform.position;
-		tempVector.x = Camera.main.transform.position.x * speed;
-        tempVector.y = Camera.main.transform.position.y + backgroundInitialY;
-		backgroundLayer.transform.position = tempVector;
+	void FixedUpdate () {
+        // Where is the camera?!
+        var x = Camera.main.transform.position.x;
+        var y = Camera.main.transform.position.y;
 
-        Debug.Log(backgroundLayer.transform.position);
+        var newpos = new Vector3(foregroundStartPosition.x + x, foregroundStartPosition.y + y, foregroundStartPosition.z);
+        foregroundLayer.transform.position = newpos;
 
+        newpos = new Vector3(backgroundStartPosition.x + x, backgroundStartPosition.y + y, backgroundStartPosition.z);
+        backgroundLayer.transform.position = newpos;
 
-        tempVector = foregroundLayer.transform.position;
-        tempVector.x = Camera.main.transform.position.x * speed * 0.75f;
-        tempVector.y = Camera.main.transform.position.y + foregroundInitialY;
-        foregroundLayer.transform.position = tempVector;
+        newpos = new Vector2(x * speed * ratio, 0);
+        foregroundLayer.GetComponent<Renderer>().sharedMaterial.SetTextureOffset("_MainTex", newpos);
 
-        // TODO: 2 sprites statt 1, mit endloser wiederholung
+        newpos = new Vector2(x * speed, 0);
+        backgroundLayer.GetComponent<Renderer>().sharedMaterial.SetTextureOffset("_MainTex", newpos);
     }
 }
