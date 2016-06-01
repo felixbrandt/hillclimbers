@@ -11,11 +11,16 @@ public class BackgroundFollow : MonoBehaviour {
     private Vector3 foregroundStartPosition;
     private Vector3 backgroundStartPosition;
 
+    private Vector2 foregroundStartOffset;
+    private Vector2 backgroundStartOffset;
+
     private float saved = 0;
 
 	// Use this for initialization
 	void Start () {
-        // MAYBE: Add offset saving
+        foregroundStartOffset = foregroundLayer.GetComponent<Renderer>().sharedMaterial.GetTextureOffset("_MainTex");
+        backgroundStartOffset = backgroundLayer.GetComponent<Renderer>().sharedMaterial.GetTextureOffset("_MainTex");
+
         foregroundStartPosition = foregroundLayer.transform.position;
         backgroundStartPosition = backgroundLayer.transform.position;
 	}
@@ -36,5 +41,12 @@ public class BackgroundFollow : MonoBehaviour {
 
         newpos = new Vector2(x * speed, 0);
         backgroundLayer.GetComponent<Renderer>().sharedMaterial.SetTextureOffset("_MainTex", newpos);
+    }
+
+    void OnDisable()
+    {
+        backgroundLayer.GetComponent<Renderer>().sharedMaterial.SetTextureOffset("_MainTex", backgroundStartOffset);
+        foregroundLayer.GetComponent<Renderer>().sharedMaterial.SetTextureOffset("_MainTex", foregroundStartOffset);
+        // reset offsets to values set in scene view
     }
 }
