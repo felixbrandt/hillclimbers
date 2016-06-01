@@ -77,6 +77,7 @@ public class PlayerHealth : MonoBehaviour
     {
         // Set the death flag so this function won't be called again.
         isDead = true;
+		GetComponent<Animator> ().SetTrigger ("Die");
 
         // Tell the animator that the player is dead.
         //anim.SetTrigger("Die");
