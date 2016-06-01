@@ -50,7 +50,7 @@ public class WalkingScript : MonoBehaviour {
             rb2d.AddForce(new Vector2(0, jumpHeight));
         }
 
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0))
         {
             animator.SetTrigger("Attacking");
         }
