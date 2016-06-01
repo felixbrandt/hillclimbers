@@ -7,7 +7,6 @@ TagManager:
   - weapon
   - tool
   - icicle
-  - Player
   layers:
   - Default
   - TransparentFX
