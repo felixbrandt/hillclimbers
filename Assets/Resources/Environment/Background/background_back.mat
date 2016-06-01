@@ -21,7 +21,11 @@ Material:
         second:
           m_Texture: {fileID: 2800000, guid: e3977aa06d5f2a544b52561af4738d49, type: 3}
           m_Scale: {x: 2, y: 1}
+<<<<<<< Updated upstream
           m_Offset: {x: 0, y: 0}
+=======
+          m_Offset: {x: 0.16736817, y: 0}
+>>>>>>> Stashed changes
       data:
         first:
           name: _BumpMap
