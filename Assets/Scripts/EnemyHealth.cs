@@ -5,7 +5,7 @@ public class EnemyHealth : MonoBehaviour {
 
 	public float health=100f;
 
-	public void RemoveHealth(float amount)
+	public void TakeDamage(float amount)
 	{
 		//Check if Enemy has enough Health left to get fought
 		if (health > 0) {
