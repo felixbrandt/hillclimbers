@@ -2765,6 +2765,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  maxHealth: 100
 --- !u!50 &1673244456
 Rigidbody2D:
   serializedVersion: 2
@@ -3314,11 +3315,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 434260, guid: 46c05ca2217ff9b438a0be5cc9d007bc, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 33.96
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 434260, guid: 46c05ca2217ff9b438a0be5cc9d007bc, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 5.4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 434260, guid: 46c05ca2217ff9b438a0be5cc9d007bc, type: 2}
       propertyPath: m_LocalPosition.z
@@ -3346,7 +3347,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 175502, guid: 46c05ca2217ff9b438a0be5cc9d007bc, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 46c05ca2217ff9b438a0be5cc9d007bc, type: 2}
