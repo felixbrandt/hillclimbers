@@ -32,6 +32,10 @@ public class ItemController : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D collider){
 
+		if (collider.CompareTag("icicleTrap"))
+		{
+			collider.gameObject.GetComponentInChildren<Animator> ().SetTrigger ("Falling");
+		}
 
         if (collider.CompareTag("icicle"))
         {
@@ -40,7 +44,7 @@ public class ItemController : MonoBehaviour {
                 StartCoroutine("DamageOverTime");
                 damageOverTimeActive = true;
             }
-            }
+        }
 
 
 		if (collider.CompareTag ("weapon")) {
@@ -100,7 +104,7 @@ public class ItemController : MonoBehaviour {
     {
         while (true)
         {
-            health.TakeDamage(10);
+            health.TakeDamage(36);
             yield return new WaitForSeconds(0.5f);
         }
     }
