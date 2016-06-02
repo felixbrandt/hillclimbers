@@ -866,6 +866,7 @@ Canvas:
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -2739,7 +2740,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 1.5
   ad: 10
-  cooldown: 0.5
+  cooldown: 0.95
   animator: {fileID: 0}
 --- !u!1 &1729546899
 GameObject:
@@ -3186,11 +3187,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 434260, guid: 46c05ca2217ff9b438a0be5cc9d007bc, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 55.42
+      value: 52.29
       objectReference: {fileID: 0}
     - target: {fileID: 434260, guid: 46c05ca2217ff9b438a0be5cc9d007bc, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 5.3
+      value: 5.95
       objectReference: {fileID: 0}
     - target: {fileID: 434260, guid: 46c05ca2217ff9b438a0be5cc9d007bc, type: 2}
       propertyPath: m_LocalPosition.z

@@ -50,8 +50,8 @@ public class EnemyAttack : MonoBehaviour {
 		if (ph.currentHealth > 0) {
 			ph.TakeDamage (ad);
 		}
-		//TODO import animations
-		//animator.SetBool ("Yetiwalk", false);
-		//animator.SetBool ("Yetiattack", true);
+
+        animator.SetTrigger("Attacking");
+        animator.SetBool("Walking", false);
 	}
 }
