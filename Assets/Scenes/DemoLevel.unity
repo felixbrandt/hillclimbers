@@ -154,11 +154,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 447464, guid: 2c8b454c46ed98546b47f16849ddbb00, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 30.73
       objectReference: {fileID: 0}
     - target: {fileID: 447464, guid: 2c8b454c46ed98546b47f16849ddbb00, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 6.56
       objectReference: {fileID: 0}
     - target: {fileID: 447464, guid: 2c8b454c46ed98546b47f16849ddbb00, type: 2}
       propertyPath: m_LocalPosition.z
@@ -498,7 +498,7 @@ Transform:
   - {fileID: 1092330785}
   - {fileID: 1729546900}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 4
 --- !u!114 &167901599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -866,7 +866,6 @@ Canvas:
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -2738,7 +2737,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c695868a5ebb54a5e97b43879c931fea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 2
+  range: 1.5
   ad: 10
   cooldown: 0.5
   animator: {fileID: 0}

@@ -34,11 +34,15 @@ public class EnemyAttack : MonoBehaviour {
 	{
 		Vector3 targetPosition=player.transform.position;
 		targetPositionDelta = targetPosition - transform.position;
-		if (targetPositionDelta.x <= range) {
+		if (Mathf.Abs(targetPositionDelta.x) <= range) {
 			inRange = true;
 		} else {
 			inRange = false;	
 		}
+	}
+
+	void OnTriggerExit2D(Collider2D other){
+		inRange = false;
 	}
 	void Attack()
 	{
