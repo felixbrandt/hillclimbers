@@ -1736,6 +1736,18 @@ BoxCollider2D:
   m_Offset: {x: 0.36, y: -2.42}
   serializedVersion: 2
   m_Size: {x: 13.05, y: 40.64}
+--- !u!114 &1078065574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1078065565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae0198d0b16a345dcb92e9a327f5fa00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 1078065567}
 --- !u!1 &1092330784
 GameObject:
   m_ObjectHideFlags: 0
@@ -2727,6 +2739,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  anim: {fileID: 1673244454}
 --- !u!114 &1673244459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3220,6 +3233,10 @@ Prefab:
     - target: {fileID: 175502, guid: 46c05ca2217ff9b438a0be5cc9d007bc, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 175502, guid: 46c05ca2217ff9b438a0be5cc9d007bc, type: 2}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11466408, guid: 46c05ca2217ff9b438a0be5cc9d007bc, type: 2}

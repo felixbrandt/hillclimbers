@@ -7,6 +7,7 @@ TagManager:
   - weapon
   - tool
   - icicle
+  - Enemy
   layers:
   - Default
   - TransparentFX
