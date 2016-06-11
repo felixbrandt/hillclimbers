@@ -6,6 +6,8 @@ public class ItemController : MonoBehaviour {
 
 	public GameObject[] weapons = new GameObject[2];
 	public GameObject[] tools = new GameObject[2];
+	public GameObject hook;
+	public Transform firePoint;
     public PlayerHealth health;
     public bool damageOverTimeActive;
     public float damage = 0f;
@@ -15,6 +17,8 @@ public class ItemController : MonoBehaviour {
     private Button toolSprite2;
 
 
+
+
     // Use this for initialization
     void Start() {
         health = GetComponent<PlayerHealth>();
@@ -22,12 +26,17 @@ public class ItemController : MonoBehaviour {
         weaponSprite2 = GameObject.Find("HUD/Items/WeaponSlots").GetComponentsInChildren<Button>()[1];
         toolSprite1 = GameObject.Find("HUD/Items/ToolSlots").GetComponentsInChildren<Button>()[0];
         toolSprite2 = GameObject.Find("HUD/Items/ToolSlots").GetComponentsInChildren<Button>()[1];
-            
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		Vector2 mousePosition = new Vector2 (Camera.main.ScreenToWorldPoint (Input.mousePosition).x, Camera.main.ScreenToWorldPoint (Input.mousePosition).y);
+		Vector2 firePointPosition = new Vector2 (firePoint.position.x, firePoint.position.y);
+		if (Input.GetMouseButtonDown (0)) {
+			Instantiate (hook, firePoint.position, firePoint.rotation);
+		}
+
 	}
 
 	void OnTriggerEnter2D(Collider2D collider){
