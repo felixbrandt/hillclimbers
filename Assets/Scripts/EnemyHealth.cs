@@ -4,8 +4,13 @@ using System.Collections;
 public class EnemyHealth : MonoBehaviour {
 
 	public float health=100f;
+	public Animator anim;
 
-	public void RemoveHealth(float amount)
+	void Awake()
+	{
+		anim = GetComponent<Animator> ();
+	}
+	public void TakeDamage(float amount)
 	{
 		//Check if Enemy has enough Health left to get fought
 		if (health > 0) {
@@ -13,7 +18,8 @@ public class EnemyHealth : MonoBehaviour {
 		}
 		//Kill enemy if health <= 0
 		else {
-			//TODO Show dying-Animation
+			anim.SetBool ("Walking", false);
+			anim.SetTrigger ("Die");
 			Destroy (gameObject);
 		}
 	}
