@@ -31,20 +31,20 @@ public class ItemController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Vector2 mousePosition = new Vector2 (Camera.main.ScreenToWorldPoint (Input.mousePosition).x, Camera.main.ScreenToWorldPoint (Input.mousePosition).y);
-		Vector2 firePointPosition = new Vector2 (firePoint.position.x, firePoint.position.y);
-		if (Input.GetMouseButtonDown (0)) {
-			Instantiate (hook, firePoint.position, firePoint.rotation);
-		}
+		//Vector2 mousePosition = new Vector2 (Camera.main.ScreenToWorldPoint (Input.mousePosition).x, Camera.main.ScreenToWorldPoint (Input.mousePosition).y);
+		//Vector2 firePointPosition = new Vector2 (firePoint.position.x, firePoint.position.y);
+		//if (Input.GetMouseButtonDown (0)) {
+		//	Instantiate (hook, firePoint.position, firePoint.rotation);
+		//}
 
 	}
 
 	void OnTriggerEnter2D(Collider2D collider){
 
-		if (collider.CompareTag("icicleTrap"))
-		{
-			collider.gameObject.GetComponentInChildren<Animator> ().SetTrigger ("Falling");
-		}
+		//if (collider.CompareTag("icicleTrap"))
+		//{
+		//	collider.gameObject.GetComponentInChildren<Animator> ().SetTrigger ("Falling");
+		//}
 
         if (collider.CompareTag("icicle"))
         {

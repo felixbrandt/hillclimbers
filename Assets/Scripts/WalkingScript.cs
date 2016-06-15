@@ -11,6 +11,7 @@ public class WalkingScript : MonoBehaviour {
     public Transform groundCheck;
     float groundRadius = 0.2f;
     public LayerMask whatIsGround;
+    public Grapplinghook hook;
 
 
     Rigidbody2D rb2d;
@@ -25,26 +26,30 @@ public class WalkingScript : MonoBehaviour {
         grounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
         animator.SetBool("Jumping", !grounded);
 
-        if (Input.GetAxis("Horizontal") != 0)
+        if (!hook.IsEnabled)
         {
-            if (grounded)
+
+            if (Input.GetAxis("Horizontal") != 0)
             {
-                animator.SetBool("Walking", true);
+                if (grounded)
+                {
+                    animator.SetBool("Walking", true);
+                }
+                transform.Translate(Vector3.right * Time.deltaTime * speed);
+                if (Input.GetAxis("Horizontal") < 0)
+                {
+                    transform.rotation = Quaternion.Euler(0, 180, 0);
+                }
+                else if (Input.GetAxis("Horizontal") > 0)
+                {
+                    transform.rotation = Quaternion.Euler(0, 0, 0);
+                }
             }
-            transform.Translate(Vector3.right * Time.deltaTime * speed);
-            if (Input.GetAxis("Horizontal") < 0)
+            else
             {
-                transform.rotation = Quaternion.Euler(0, 180, 0);
+                animator.SetBool("Walking", false);
             }
-            else if (Input.GetAxis("Horizontal") > 0)
-            {
-                transform.rotation = Quaternion.Euler(0, 0, 0);
-            }
-        }
-        else
-        {
-            animator.SetBool("Walking", false);
-        }
+
 
         // Jump
         // TODO? only let player jump when standin on the ground
@@ -54,7 +59,8 @@ public class WalkingScript : MonoBehaviour {
             //transform.Translate(Vector3.up * Time.deltaTime * jumpHeight);
             rb2d.AddForce(new Vector2(0, jumpHeight));
         }
-	}
+        }
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
