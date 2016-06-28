@@ -5,8 +5,7 @@ using UnityEngine;
     public class Grapplinghook : MonoBehaviour
     {
         public float Length = 4;
-        public LayerMask layer;
-
+        WalkingScript ws;
         public bool IsEnabled
         {
             get { return _points.Any(); }
@@ -22,14 +21,18 @@ using UnityEngine;
 
         void Start()
         {
+            ws = GetComponent<WalkingScript>();
             _line = new GameObject("Line").AddComponent<LineRenderer>();
+            _line.transform.position = new Vector3(0, 0, 1);
             _line.SetVertexCount(2);
             _line.SetWidth(.025f, .025f);
             _line.gameObject.SetActive(false);
             _line.SetColors(Color.black, Color.black);
             _line.GetComponent<Renderer>().material.color = Color.black;
+            _line.GetComponent<Renderer>().material.shader = Shader.Find("Sprites/Default");
+            _line.sortingLayerName = "Top";
 
-            _grapple = new GameObject("Grapple");
+        _grapple = new GameObject("Grapple");
             _grapple.AddComponent<CircleCollider2D>().radius = .1f;
             _grapple.AddComponent<Rigidbody2D>();
             _grapple.GetComponent<Rigidbody2D>().isKinematic = true;
@@ -61,14 +64,15 @@ using UnityEngine;
 
                 var hit = Physics2D.Linecast(transform.position, grapplePoint, ~(1 << 9));
                 var distance = Vector3.Distance(transform.position, hit.point);
-                if (hit.collider != null && distance <= Length) //&& hit.collider.gameObject.layer == "Hookpoint"
+                if (hit.collider != null && distance <= Length)
             {
                     _line.SetVertexCount(2);
                     _line.SetPosition(0, hit.point);
                     _line.SetPosition(1, transform.position);
                     _line.gameObject.SetActive(true);
+                    
 
-                    _points.Add(CreateGrapplePoint(hit));
+                _points.Add(CreateGrapplePoint(hit));
 
                     _grapple.transform.position = hit.point;
                     SetParent(_grapple.transform, hit.collider.transform);
@@ -91,7 +95,8 @@ using UnityEngine;
 
         private void UpdateGrapple()
         {
-            UpdateLineDrawing();
+        ws.fallHeight = 0;
+        UpdateLineDrawing();
             var hit = Physics2D.Linecast(transform.position, _grapple.transform.position, ~(1 << 9));
             var hitPrev = Physics2D.Linecast(transform.position, _previousGrapple.transform.position, ~(1 << 9));
 
@@ -112,8 +117,8 @@ using UnityEngine;
             }
             else if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
             {
-                // if you retract the grappling hook
-
+            // if you retract the grappling hook
+            ws.fallHeight = 0;
                 // jump off
                 if (Input.GetKeyDown(KeyCode.Space) && transform.position.y < _grapple.transform.position.y)
                     GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x /10, 3);

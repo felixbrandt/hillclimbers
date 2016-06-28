@@ -41,10 +41,10 @@ public class ItemController : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D collider){
 
-		//if (collider.CompareTag("icicleTrap"))
-		//{
-		//	collider.gameObject.GetComponentInChildren<Animator> ().SetTrigger ("Falling");
-		//}
+		if (collider.CompareTag("icicleTrap"))
+		{
+			collider.gameObject.GetComponentInChildren<Animator> ().SetTrigger ("Falling");
+		}
 
         if (collider.CompareTag("icicle"))
         {
@@ -55,8 +55,13 @@ public class ItemController : MonoBehaviour {
             }
         }
 
+        if (collider.CompareTag("stoneTrap"))
+        {
+            health.TakeDamage(100);
+        }
 
-		if (collider.CompareTag ("weapon")) {
+
+        if (collider.CompareTag ("weapon")) {
             Debug.Log("entered collider");
             if (weapons [0] == null) {
                 Debug.Log("weaponslot free");

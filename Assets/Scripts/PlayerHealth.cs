@@ -33,6 +33,11 @@ public class PlayerHealth : MonoBehaviour
 
     void Update()
     {
+        if (currentHealth <= 0 && !isDead)
+        {
+            // ... it should die.
+            Death();
+        }
         // If the player has just been damaged...
         if (damaged)
         {
@@ -64,12 +69,6 @@ public class PlayerHealth : MonoBehaviour
         // Play the hurt sound effect.
         // playerAudio.Play();
 
-        // If the player has lost all it's health and the death flag hasn't been set yet...
-        if (currentHealth <= 0 && !isDead)
-        {
-            // ... it should die.
-            Death();
-        }
     }
 
 
