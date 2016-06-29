@@ -24,16 +24,12 @@ using UnityEngine;
             if (IsOnRope)
             {
             GetComponent<Rigidbody2D>().gravityScale = 0;
-            GetComponent<ItemController>().enabled = false;
-            GetComponent<PlayerAttack>().enabled = false;
             GetComponent<WalkingScript>().enabled = false;
             // Jump off rope
             if (IsOnRope && Input.GetKeyDown(KeyCode.Space))
                 {
                 ws.fallHeight = 0;
                 GetComponent<Rigidbody2D>().gravityScale = 1;
-                GetComponent<ItemController>().enabled = true;
-                GetComponent<PlayerAttack>().enabled = true;
                 GetComponent<WalkingScript>().enabled = true;
                 IsOnRope = false;
                 GetComponent<Rigidbody2D>().AddForce(new Vector2(0, JumpForce));
@@ -100,6 +96,7 @@ using UnityEngine;
         {
             if ((IsOnRope || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) && col.tag == "Rope")
             {
+            transform.position = new Vector2(col.gameObject.transform.position.x, transform.position.y);
                 IsOnRope = true;
                 if (!_ropeSegments.Contains(col.gameObject))
                     _ropeSegments.Add(col.gameObject);

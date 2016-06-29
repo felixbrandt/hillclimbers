@@ -5,6 +5,7 @@ using UnityEngine;
     public class Grapplinghook : MonoBehaviour
     {
         public float Length = 4;
+        public LayerMask mask = ~(1 << 9);
         WalkingScript ws;
         public bool IsEnabled
         {
@@ -62,7 +63,7 @@ using UnityEngine;
                 var worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
                 var grapplePoint = transform.position + (worldPosition - transform.position) * Length;
 
-                var hit = Physics2D.Linecast(transform.position, grapplePoint, ~(1 << 9));
+                var hit = Physics2D.Linecast(transform.position, grapplePoint, mask);
                 var distance = Vector3.Distance(transform.position, hit.point);
                 if (hit.collider != null && distance <= Length)
             {
@@ -97,8 +98,8 @@ using UnityEngine;
         {
         ws.fallHeight = 0;
         UpdateLineDrawing();
-            var hit = Physics2D.Linecast(transform.position, _grapple.transform.position, ~(1 << 9));
-            var hitPrev = Physics2D.Linecast(transform.position, _previousGrapple.transform.position, ~(1 << 9));
+            var hit = Physics2D.Linecast(transform.position, _grapple.transform.position, mask);
+            var hitPrev = Physics2D.Linecast(transform.position, _previousGrapple.transform.position,mask);
 
             if (hit.collider.gameObject != _grapple && hit.collider.gameObject != _previousGrapple)
             {
