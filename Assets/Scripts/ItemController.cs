@@ -16,6 +16,9 @@ public class ItemController : MonoBehaviour {
     private Button weaponSprite2;
     private Button toolSprite1;
     private Button toolSprite2;
+	private float aD=0f;
+	private float coolDown=0f;
+	private GameObject currentItem;
 
 
 
@@ -79,8 +82,11 @@ public class ItemController : MonoBehaviour {
                 Debug.Log("weaponslot free");
                 switch (collider.gameObject.name)
                 {
-                    case "KnifeItem":
-                        weapons[0] = transform.Find("player_torso/player_arm_upper/player_arm_lower/player_hand/Knife").gameObject;
+				case "KnifeItem":
+					weapons [0] = transform.Find ("player_torso/player_arm_upper/player_arm_lower/player_hand/Knife").gameObject;
+					aD = 20f;
+					coolDown = 0.1f;
+					Debug.Log ("44");
                         GetComponent<PlayerAttack>().enabled = true;
                         GetComponent<Grapplinghook>().enabled = false;
                         Activate(1);
@@ -178,6 +184,7 @@ public class ItemController : MonoBehaviour {
                     GetComponent<PlayerAttack>().enabled = true;
                     GetComponent<Grapplinghook>().enabled = false;
                     weapons[0].SetActive(true);
+					currentItem = weapons [0];
                 }
                 if (weapons[1] != null)
                 {
@@ -209,6 +216,7 @@ public class ItemController : MonoBehaviour {
                     GetComponent<PlayerAttack>().enabled = true;
                     GetComponent<Grapplinghook>().enabled = false;
                     weapons[1].SetActive(true);
+					currentItem = weapons [1];
                 }
                 if (tools[0] != null)
                 {
@@ -276,4 +284,16 @@ public class ItemController : MonoBehaviour {
         }
 
     }
+	public float getAD()
+	{
+		return aD;
+	}
+	public float getCD()
+	{
+		return coolDown;
+	}
+	public GameObject getCurItem()
+	{
+		return currentItem;
+	}
 }

@@ -5,35 +5,28 @@ public class PlayerAttack : MonoBehaviour {
 
 	public Animator anim;
 
-	GameObject enemy;
-	EnemyHealth eh;
-	GameObject weapon;
+	GameObject player;
+	ItemController ic;
+	WeaponController wc;
 
+	private float cD;
+	float timer;
 
-	bool hit = false;
-	int attackpoints;
 
 	void Awake () {
 		anim = GetComponent<Animator> ();
-		enemy = GameObject.FindGameObjectWithTag ("Enemy");
-		eh = enemy.GetComponent<EnemyHealth> ();
+		player = GameObject.FindGameObjectWithTag ("Player");
+		ic = player.GetComponent<ItemController> ();
 	}
-	
-	// Update is called once per frame
+
 	void FixedUpdate () {
+		cD = ic.getCD ();
 		if (Input.GetMouseButtonDown(0))
 		{
-			anim.SetTrigger("Attacking");
-			Attack ();
-		}
-	}
-	void Attack()
-	{
-		if (hit) {
-			if (eh.health > 0) {
-				eh.TakeDamage (attackpoints);
+			timer += Time.deltaTime;
+			if (timer >= cD) {
+				anim.SetTrigger ("Attacking");
 			}
-
 		}
 	}
 }
