@@ -23,6 +23,7 @@ public class ItemController : MonoBehaviour {
     // Use this for initialization
     void Start() {
         health = GetComponent<PlayerHealth>();
+        Physics2D.IgnoreLayerCollision(9, 12);
         weaponSprite1 = GameObject.Find("HUD/Items/WeaponSlots").GetComponentsInChildren<Button>()[0];
         weaponSprite2 = GameObject.Find("HUD/Items/WeaponSlots").GetComponentsInChildren<Button>()[1];
         toolSprite1 = GameObject.Find("HUD/Items/ToolSlots").GetComponentsInChildren<Button>()[0];
@@ -58,10 +59,13 @@ public class ItemController : MonoBehaviour {
 			collider.gameObject.GetComponentInChildren<Animator> ().SetTrigger ("Falling");
 		}
 
-        if (collider.CompareTag("icicle"))
+
+
+        if (collider.CompareTag("icicle") || collider.CompareTag("boulder"))
         {
             if (damageOverTimeActive == false)
             {
+                Debug.Log("icicle damage");
                 StartCoroutine("DamageOverTime");
                 damageOverTimeActive = true;
             }
@@ -69,6 +73,7 @@ public class ItemController : MonoBehaviour {
 
         if (collider.CompareTag("stoneTrap"))
         {
+            Debug.Log("stonetrap damage");
             health.TakeDamage(100);
         }
 
@@ -150,15 +155,19 @@ public class ItemController : MonoBehaviour {
 
     void OnTriggerExit2D(Collider2D collider)
     {
-        damageOverTimeActive = false;
-        StopCoroutine("DamageOverTime");
+        if (collider.CompareTag("icicle") || collider.CompareTag("boulder"))
+        {
+            damageOverTimeActive = false;
+            StopCoroutine("DamageOverTime");
+        }
+
     }
 
     private IEnumerator DamageOverTime()
     {
         while (true)
         {
-            health.TakeDamage(36);
+            health.TakeDamage(30);
             yield return new WaitForSeconds(0.5f);
         }
     }
