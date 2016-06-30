@@ -151,7 +151,20 @@ public class ItemController : MonoBehaviour {
 				Debug.Log ("toolslots full");
 			}
 		}
-	}
+
+
+            if (collider.CompareTag("exit1"))
+            {
+                GameObject.Find("MenuManager").GetComponent<IngameMenu>().EndGame(1);
+            }
+
+            if (collider.CompareTag("exit2"))
+            {
+                GameObject.Find("MenuManager").GetComponent<IngameMenu>().EndGame(2);
+            }
+
+
+    }
 
     void OnTriggerExit2D(Collider2D collider)
     {

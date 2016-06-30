@@ -13,6 +13,8 @@ TagManager:
   - stoneTrap
   - boulderDespawn
   - boulder
+  - exit1
+  - exit2
   layers:
   - Default
   - TransparentFX

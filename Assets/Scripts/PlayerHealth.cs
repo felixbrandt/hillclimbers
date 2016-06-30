@@ -11,12 +11,18 @@ public class PlayerHealth : MonoBehaviour
     public float flashSpeed = 5f;                               // The speed the damageImage will fade at.
     public Color flashColour = new Color(1f, 0f, 0f, 0.1f);     // The colour the damageImage is set to, to flash.
 
+    //for Statistics:
+    public int totalDamage = 0;
+    public int totalDeaths = 0;
+    public int totalKills = 0;
 
     Animator anim;                                              // Reference to the Animator component.
     AudioSource playerAudio;                                    // Reference to the AudioSource component.
     WalkingScript walkingScript;                                // Reference to the player's movement.
     bool isDead;                                                // Whether the player is dead.
     bool damaged;                                               // True when the player gets damaged.
+
+    
 
 
     void Awake()
@@ -64,6 +70,7 @@ public class PlayerHealth : MonoBehaviour
         // Reduce the current health by the damage amount.
         currentHealth -= amount;
         healthSlider.value = currentHealth;
+        totalDamage += amount;
 
 
         // Play the hurt sound effect.
@@ -77,6 +84,8 @@ public class PlayerHealth : MonoBehaviour
         // Set the death flag so this function won't be called again.
         isDead = true;
 		GetComponent<Animator> ().SetTrigger ("Die");
+
+        totalDeaths += 1;
 
         // Tell the animator that the player is dead.
         //anim.SetTrigger("Die");
