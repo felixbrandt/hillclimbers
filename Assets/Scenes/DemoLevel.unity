@@ -17983,9 +17983,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: 20.197443, y: 9.143486}
+  m_Offset: {x: 20.197422, y: 7.212627}
   serializedVersion: 2
-  m_Size: {x: 41.39536, y: 6.913698}
+  m_Size: {x: 41.395355, y: 10.775404}
 --- !u!95 &1673244454
 Animator:
   serializedVersion: 3
@@ -18015,8 +18015,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waypointPositions:
-  - {x: 31.5, y: 5.4, z: 0}
-  - {x: 55.4, y: 5.4, z: 0}
+  - {x: 32, y: 2.19, z: 0}
+  - {x: 53, y: 2.19, z: 0}
   speed: 1
   animator: {fileID: 1673244454}
 --- !u!50 &1673244456
@@ -21848,11 +21848,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 434260, guid: 46c05ca2217ff9b438a0be5cc9d007bc, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 44.05
+      value: 53.34
       objectReference: {fileID: 0}
     - target: {fileID: 434260, guid: 46c05ca2217ff9b438a0be5cc9d007bc, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -1.78
+      value: -2.04
       objectReference: {fileID: 0}
     - target: {fileID: 434260, guid: 46c05ca2217ff9b438a0be5cc9d007bc, type: 2}
       propertyPath: m_LocalPosition.z
@@ -21876,7 +21876,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 434260, guid: 46c05ca2217ff9b438a0be5cc9d007bc, type: 2}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 175502, guid: 46c05ca2217ff9b438a0be5cc9d007bc, type: 2}
       propertyPath: m_IsActive
