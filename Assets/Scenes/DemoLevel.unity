@@ -16528,6 +16528,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1476714246}
   - 212: {fileID: 1476714247}
+  - 61: {fileID: 1476714248}
   m_Layer: 9
   m_Name: Knife
   m_TagString: Untagged
@@ -16578,6 +16579,20 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
+--- !u!61 &1476714248
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1476714245}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 4.9975743, y: -1.0976976}
+  serializedVersion: 2
+  m_Size: {x: 22.607355, y: 7.7088}
 --- !u!1 &1491456688
 GameObject:
   m_ObjectHideFlags: 0
