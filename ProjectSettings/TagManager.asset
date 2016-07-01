@@ -15,6 +15,11 @@ TagManager:
   - boulder
   - exit1
   - exit2
+  - checkpoint1
+  - checkpoint2
+  - checkpoint3
+  - checkpoint4
+  - abyss
   layers:
   - Default
   - TransparentFX
@@ -29,7 +34,7 @@ TagManager:
   - Ground
   - Environment
   - Danger
-  - 
+  - Checkpoints
   - 
   - 
   - 

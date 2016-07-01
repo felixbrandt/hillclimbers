@@ -7,6 +7,7 @@ public class IngameMenu : MonoBehaviour {
 
     GameObject endGameScreen;
     GameObject pauseMenu;
+    GameObject respawnMenu;
     GameObject player;
     bool gamePaused = false;
 
@@ -14,6 +15,7 @@ public class IngameMenu : MonoBehaviour {
 	void Start () {
         endGameScreen = GameObject.Find("EndGameScreen");
         pauseMenu = GameObject.Find("PauseMenu");
+        respawnMenu = GameObject.Find("Respawn");
         player = GameObject.FindGameObjectWithTag("Player");
 
     }
@@ -60,9 +62,25 @@ public class IngameMenu : MonoBehaviour {
         player.GetComponent<WalkingScript>().enabled = true;
     }
 
+    public void Respawn()
+    {
+        player.transform.position = player.GetComponent<ItemController>().checkpoint;
+        respawnMenu.GetComponent<Canvas>().enabled = false;
+        respawnMenu.transform.FindChild("Btn_respawn").GetComponent<Button>().enabled = false;
+        respawnMenu.transform.FindChild("Btn_main_menu").GetComponent<Button>().enabled = false;
+        player.GetComponent<PlayerHealth>().currentHealth = 100;
+        player.GetComponent<PlayerHealth>().healthSlider.value = 100;
+        player.GetComponent<WalkingScript>().enabled = true;
+        player.GetComponent<WalkingScript>().fallHeight = 0;
+        player.GetComponent<ItemController>().Activate(1);
+        player.GetComponent<PlayerHealth>().isDead = false;
+        Debug.Log(player.transform.position = player.GetComponent<ItemController>().checkpoint);
+        
+    }
+
     public void MainMenu()
     {
-        SceneManager.LoadScene("DemoLevel");
+        SceneManager.LoadScene("MainMenu");
     }
 
 
@@ -74,7 +92,6 @@ public class IngameMenu : MonoBehaviour {
         endGameScreen.GetComponent<Canvas>().enabled = true;
         endGameScreen.transform.FindChild("Btn_next_level").GetComponent<Button>().enabled = true;
         endGameScreen.transform.FindChild("Btn_main_menu").GetComponent<Button>().enabled = true;
-        Debug.Log(player.GetComponent<PlayerHealth>().totalDamage.ToString());
         endGameScreen.transform.FindChild("Statistics").transform.FindChild("Damage").GetComponent<Text>().text = player.GetComponent<PlayerHealth>().totalDamage.ToString();
         endGameScreen.transform.FindChild("Statistics").transform.FindChild("Deaths").GetComponent<Text>().text = player.GetComponent<PlayerHealth>().totalDeaths.ToString();
         endGameScreen.transform.FindChild("Statistics").transform.FindChild("Kills").GetComponent<Text>().text = player.GetComponent<PlayerHealth>().totalKills.ToString();
@@ -89,4 +106,5 @@ public class IngameMenu : MonoBehaviour {
             endGameScreen.transform.FindChild("Progress").transform.FindChild("Exit1").GetComponent<Image>().enabled = true;
         }
     }
+
 }

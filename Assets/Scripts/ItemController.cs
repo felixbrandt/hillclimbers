@@ -7,21 +7,22 @@ public class ItemController : MonoBehaviour {
 
     public GameObject[] weapons = new GameObject[2];
     public GameObject[] tools = new GameObject[2];
-    public GameObject hook;
-	public Transform firePoint;
     public PlayerHealth health;
     public bool damageOverTimeActive;
     public float damage = 0f;
+    public Vector2 checkpoint = new Vector2();
     private Button weaponSprite1;
     private Button weaponSprite2;
     private Button toolSprite1;
     private Button toolSprite2;
+    
 
 
 
 
     // Use this for initialization
     void Start() {
+        checkpoint = GameObject.Find("Checkpoints").transform.FindChild("StartingPosition").position;
         health = GetComponent<PlayerHealth>();
         Physics2D.IgnoreLayerCollision(9, 12);
         weaponSprite1 = GameObject.Find("HUD/Items/WeaponSlots").GetComponentsInChildren<Button>()[0];
@@ -65,16 +66,19 @@ public class ItemController : MonoBehaviour {
         {
             if (damageOverTimeActive == false)
             {
-                Debug.Log("icicle damage");
-                StartCoroutine("DamageOverTime");
                 damageOverTimeActive = true;
+                StartCoroutine(DamageOverTime(30));
             }
+            
         }
 
-        if (collider.CompareTag("stoneTrap"))
+        if (collider.CompareTag("stoneTrap") || collider.CompareTag("abyss"))
         {
-            Debug.Log("stonetrap damage");
-            health.TakeDamage(100);
+            if (damageOverTimeActive == false)
+            {
+                damageOverTimeActive = true;
+                StartCoroutine(DamageOverTime(100));
+            }
         }
 
 
@@ -163,6 +167,23 @@ public class ItemController : MonoBehaviour {
                 GameObject.Find("MenuManager").GetComponent<IngameMenu>().EndGame(2);
             }
 
+        if (collider.CompareTag("checkpoint1"))
+        {
+            checkpoint = new Vector2(collider.gameObject.transform.position.x, collider.gameObject.transform.position.y);
+        }
+        if (collider.CompareTag("checkpoint2"))
+        {
+            checkpoint = new Vector2(collider.gameObject.transform.position.x, collider.gameObject.transform.position.y);
+        }
+        if (collider.CompareTag("checkpoint3"))
+        {
+            checkpoint = new Vector2(collider.gameObject.transform.position.x, collider.gameObject.transform.position.y);
+        }
+        if (collider.CompareTag("checkpoint4"))
+        {
+            checkpoint = new Vector2(collider.gameObject.transform.position.x, collider.gameObject.transform.position.y);
+        }
+
 
     }
 
@@ -170,22 +191,19 @@ public class ItemController : MonoBehaviour {
     {
         if (collider.CompareTag("icicle") || collider.CompareTag("boulder"))
         {
-            damageOverTimeActive = false;
-            StopCoroutine("DamageOverTime");
+            
         }
 
     }
 
-    private IEnumerator DamageOverTime()
+    private IEnumerator DamageOverTime(int amount)
     {
-        while (true)
-        {
-            health.TakeDamage(30);
+            health.TakeDamage(amount);
             yield return new WaitForSeconds(0.5f);
-        }
+            damageOverTimeActive = false;
     }
 
-    void Activate(int i)
+    public void Activate(int i)
     {
         switch (i){
             case 1:

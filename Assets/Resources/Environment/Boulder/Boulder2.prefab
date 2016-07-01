@@ -13,7 +13,7 @@ GameObject:
   - 114: {fileID: 11443682}
   - 58: {fileID: 5849330}
   m_Layer: 12
-  m_Name: Boulder
+  m_Name: Boulder2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -117,8 +117,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dust: {fileID: 100000, guid: b09a137124acd53439d24b5804b4af1b, type: 2}
-  x: -45.19
-  y: -2.33
+  x: 45.7
+  y: 2.4
 --- !u!212 &21211822
 SpriteRenderer:
   m_ObjectHideFlags: 1
