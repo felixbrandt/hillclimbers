@@ -95,6 +95,7 @@ public class ItemController : MonoBehaviour {
 					weapons [0] = transform.Find ("player_torso/player_arm_upper/player_arm_lower/player_hand/Knife").gameObject;
 					aD = 20f;
 					coolDown = 0.1f;
+					currentItem = GameObject.FindGameObjectWithTag ("knife");
 					Debug.Log ("44");
                         GetComponent<PlayerAttack>().enabled = true;
                         GetComponent<Grapplinghook>().enabled = false;
