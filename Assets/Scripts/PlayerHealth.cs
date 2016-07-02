@@ -30,7 +30,7 @@ public class PlayerHealth : MonoBehaviour
     {
         // Setting up the references.
         //anim = GetComponent<Animator>();
-        //playerAudio = GetComponent<AudioSource>();
+        playerAudio = GetComponent<AudioSource>();
         respawnMenu = GameObject.Find("Respawn");
         // Set the initial health of the player.
         currentHealth = startingHealth;
@@ -91,8 +91,8 @@ public class PlayerHealth : MonoBehaviour
         totalDeaths += 1;
 
         // Set the audiosource to play the death clip and play it (this will stop the hurt sound from playing).
-        //playerAudio.clip = deathClip;
-        //playerAudio.Play();
+        playerAudio.clip = deathClip;
+        playerAudio.Play();
 
         // Turn off the movement scripts.
         GetComponent<WalkingScript>().enabled = false;
