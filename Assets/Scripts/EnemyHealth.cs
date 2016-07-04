@@ -5,10 +5,14 @@ public class EnemyHealth : MonoBehaviour {
 
 	public float health=100f;
 	public Animator anim;
+	public AudioClip dying;
+
+	AudioSource enemyAudio;
 
 	void Awake()
 	{
 		anim = GetComponent<Animator> ();
+		enemyAudio = GetComponent<AudioSource> ();
 	}
 	public void TakeDamage(float amount)
 	{
@@ -20,6 +24,8 @@ public class EnemyHealth : MonoBehaviour {
 		else {
 			anim.SetBool ("Walking", false);
 			anim.SetTrigger ("Die");
+			enemyAudio.clip = dying;
+			enemyAudio.Play ();
 			Destroy (gameObject);
 		}
 	}

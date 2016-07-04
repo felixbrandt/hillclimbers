@@ -8,6 +8,8 @@ public class ItemController : MonoBehaviour {
     public GameObject[] weapons = new GameObject[2];
     public GameObject[] tools = new GameObject[2];
     public PlayerHealth health;
+	public AudioClip iceFall;
+	public AudioClip stoneFall;
     public bool damageOverTimeActive;
     public float damage = 0f;
     public Vector2 checkpoint = new Vector2();
@@ -20,8 +22,7 @@ public class ItemController : MonoBehaviour {
 	private float coolDown=0f;
 	private GameObject currentItem;
 
-
-
+	AudioSource itemAudio;
 
     // Use this for initialization
     void Start() {
@@ -33,6 +34,7 @@ public class ItemController : MonoBehaviour {
         toolSprite1 = GameObject.Find("HUD/Items/ToolSlots").GetComponentsInChildren<Button>()[0];
         toolSprite2 = GameObject.Find("HUD/Items/ToolSlots").GetComponentsInChildren<Button>()[1];
         Activate(1);
+		itemAudio = GetComponent<AudioSource> ();
     }
 	
 	// Update is called once per frame
@@ -61,6 +63,8 @@ public class ItemController : MonoBehaviour {
 		if (collider.CompareTag("icicleTrap"))
 		{
 			collider.gameObject.GetComponentInChildren<Animator> ().SetTrigger ("Falling");
+			itemAudio.clip = iceFall;
+			itemAudio.Play ();
 		}
 
 
