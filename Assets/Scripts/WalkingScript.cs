@@ -7,7 +7,6 @@ public class WalkingScript : MonoBehaviour {
     public float speed = 10f;
     public int jumpHeight = 300;
     public int fallHeight = 0;
-	public AudioClip walkingClip;
 
     bool grounded = false;
     public Transform groundCheck;
@@ -17,12 +16,10 @@ public class WalkingScript : MonoBehaviour {
     public bool walking;
     public PlayerHealth health;
 
-	AudioSource playerAudio;
     Rigidbody2D rb2d;
 
     void Start ()
     {
-		playerAudio = GetComponent<AudioSource> ();
         rb2d = GetComponent<Rigidbody2D>();
         health = GetComponent<PlayerHealth>();
     }
@@ -33,8 +30,6 @@ public class WalkingScript : MonoBehaviour {
     {
         if (walking == true){
             animator.SetBool("Walking", true);
-			playerAudio.clip = walkingClip;
-			playerAudio.Play();
         }
         else
         {
@@ -73,6 +68,8 @@ public class WalkingScript : MonoBehaviour {
                 if (grounded)
                 {
                     walking = true;
+					//playerAudio.clip = walkingClip;
+					//playerAudio.Play();
                 }
                 transform.Translate(Vector3.right * Time.deltaTime * speed);
                 if (Input.GetAxis("Horizontal") < 0)
@@ -100,7 +97,10 @@ public class WalkingScript : MonoBehaviour {
         }
         }
     }
-
+	public bool getGrounded()
+	{
+		return grounded;
+	}
     void OnTriggerEnter2D(Collider2D other)
     {
         // TODO check if other object is a platform, only reset then.

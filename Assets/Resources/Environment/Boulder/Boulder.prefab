@@ -119,6 +119,7 @@ MonoBehaviour:
   dust: {fileID: 100000, guid: b09a137124acd53439d24b5804b4af1b, type: 2}
   x: -45.19
   y: -2.33
+  stoneFall: {fileID: 8300000, guid: 3a451fe76d21a4d94bce0cd71d877812, type: 3}
 --- !u!212 &21211822
 SpriteRenderer:
   m_ObjectHideFlags: 1

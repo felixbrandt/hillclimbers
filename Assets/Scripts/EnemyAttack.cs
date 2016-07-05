@@ -7,6 +7,7 @@ public class EnemyAttack : MonoBehaviour {
 	public int ad=10;
 	public float cooldown=0.5f;
 	public AudioClip inSight;
+	public AudioClip attack;
 
 	public Animator animator;
 	GameObject player;
@@ -65,6 +66,8 @@ public class EnemyAttack : MonoBehaviour {
 		}
 
         animator.SetTrigger("Attacking");
+		enemyAudio.clip = attack;
+		enemyAudio.Play ();
         animator.SetBool("Walking", false);
 	}
 }

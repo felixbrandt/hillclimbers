@@ -21,6 +21,7 @@ TagManager:
   - checkpoint4
   - abyss
   - knife
+  - dirt
   layers:
   - Default
   - TransparentFX

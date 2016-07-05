@@ -1,14 +1,18 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class EnemyHealth : MonoBehaviour {
 
 	public float health=100f;
 	public Animator anim;
+	public AudioClip dying;
+
+	AudioSource enemyAudio;
 
 	void Awake()
 	{
 		anim = GetComponent<Animator> ();
+		enemyAudio = GetComponent<AudioSource> ();
 	}
 	public void TakeDamage(float amount)
 	{
@@ -21,19 +25,23 @@ public class EnemyHealth : MonoBehaviour {
 			anim.SetBool ("Walking", false);
 			anim.SetTrigger ("Die");
             
-            // Disable all colliders -> Yeti falls off
-            foreach (var collider in gameObject.GetComponents<BoxCollider2D>())
-            {
-                collider.enabled = false;
-            }
+	           	// Disable all colliders -> Yeti falls off
+            		foreach (var collider in gameObject.GetComponents<BoxCollider2D>())
+            		{
+                		collider.enabled = false;
+            		}
 
-            // Disable Scripts
-            gameObject.GetComponent<EnemyWalk>().enabled = false;
-            gameObject.GetComponent<EnemyAttack>().enabled = false;
-            this.enabled = false;
+            		// Disable Scripts
+            		gameObject.GetComponent<EnemyWalk>().enabled = false;
+            		gameObject.GetComponent<EnemyAttack>().enabled = false;
+            		this.enabled = false;
+	
+			// Play sound
+		    	enemyAudio.clip = dying;
+	    		enemyAudio.play();
 
-            // Destroy Object in 3 seconds (probably off screen by then)
-            Destroy(gameObject, 3);
-		}
+            		// Destroy Object in 3 seconds (probably off screen by then)
+            		Destroy(gameObject, 3);
+	    }
 	}
 }

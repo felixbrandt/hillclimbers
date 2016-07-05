@@ -6,7 +6,9 @@ public class Boulder : MonoBehaviour {
     public GameObject dust;
     public float x = -42.8f;
     public float y = -2.33f;
-    Rigidbody2D rb;
+
+	Rigidbody2D rb;
+
 	// Use this for initialization
 	void Start () {
         rb = GetComponent<Rigidbody2D>();
@@ -15,7 +17,6 @@ public class Boulder : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-
         Instantiate(dust, collision.contacts[0].point, new Quaternion());
     }
 
