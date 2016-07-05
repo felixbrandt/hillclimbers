@@ -10,22 +10,28 @@ public class PlayerHealth : MonoBehaviour
     public AudioClip deathClip;                                 // The audio clip to play when the player dies.
     public float flashSpeed = 5f;                               // The speed the damageImage will fade at.
     public Color flashColour = new Color(1f, 0f, 0f, 0.1f);     // The colour the damageImage is set to, to flash.
+    public bool isDead;                                         // Whether the player is dead.
 
+    //for Statistics:
+    public int totalDamage = 0;
+    public int totalDeaths = 0;
+    public int totalKills = 0;
 
     Animator anim;                                              // Reference to the Animator component.
     AudioSource playerAudio;                                    // Reference to the AudioSource component.
-    WalkingScript walkingScript;                                // Reference to the player's movement.
-    bool isDead;                                                // Whether the player is dead.
+    GameObject respawnMenu;
+
     bool damaged;                                               // True when the player gets damaged.
+
+    
 
 
     void Awake()
     {
         // Setting up the references.
         //anim = GetComponent<Animator>();
-        //playerAudio = GetComponent<AudioSource>();
-        walkingScript = GetComponent<WalkingScript>();
-
+        playerAudio = GetComponent<AudioSource>();
+        respawnMenu = GameObject.Find("Respawn");
         // Set the initial health of the player.
         currentHealth = startingHealth;
     }
@@ -33,6 +39,11 @@ public class PlayerHealth : MonoBehaviour
 
     void Update()
     {
+        if (currentHealth <= 0 && !isDead)
+        {
+            // ... it should die.
+            Death();
+        }
         // If the player has just been damaged...
         if (damaged)
         {
@@ -52,42 +63,41 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
+        if (!isDead) {
+            // Set the damaged flag so the screen will flash.
+            damaged = true;
 
-        // Set the damaged flag so the screen will flash.
-        damaged = true;
-
-        // Reduce the current health by the damage amount.
-        currentHealth -= amount;
-        healthSlider.value = currentHealth;
+            // Reduce the current health by the damage amount.
+            currentHealth -= amount;
+            healthSlider.value = currentHealth;
+            totalDamage += amount;
 
 
-        // Play the hurt sound effect.
-        // playerAudio.Play();
-
-        // If the player has lost all it's health and the death flag hasn't been set yet...
-        if (currentHealth <= 0 && !isDead)
-        {
-            // ... it should die.
-            Death();
+            // Play the hurt sound effect.
+            // playerAudio.Play();
+            }
         }
-    }
 
 
-    void Death()
+        void Death()
     {
         // Set the death flag so this function won't be called again.
         isDead = true;
 		GetComponent<Animator> ().SetTrigger ("Die");
+        respawnMenu.GetComponent<Canvas>().enabled = true;
+        respawnMenu.transform.FindChild("Btn_respawn").GetComponent<Button>().enabled = true;
+        respawnMenu.transform.FindChild("Btn_main_menu").GetComponent<Button>().enabled = true;
 
-        // Tell the animator that the player is dead.
-        //anim.SetTrigger("Die");
+        totalDeaths += 1;
 
         // Set the audiosource to play the death clip and play it (this will stop the hurt sound from playing).
-        //playerAudio.clip = deathClip;
-        //playerAudio.Play();
+        playerAudio.clip = deathClip;
+        playerAudio.Play();
 
-        // Turn off the movement and shooting scripts.
-        walkingScript.enabled = false;
+        // Turn off the movement scripts.
+        GetComponent<WalkingScript>().enabled = false;
+        GetComponent<PlayerAttack>().enabled = false;
+        GetComponent<Grapplinghook>().enabled = false;
     }
 
 }

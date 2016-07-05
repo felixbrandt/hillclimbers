@@ -8,6 +8,19 @@ TagManager:
   - tool
   - icicle
   - Enemy
+  - Rope
+  - icicleTrap
+  - stoneTrap
+  - boulderDespawn
+  - boulder
+  - exit1
+  - exit2
+  - checkpoint1
+  - checkpoint2
+  - checkpoint3
+  - checkpoint4
+  - abyss
+  - knife
   layers:
   - Default
   - TransparentFX
@@ -17,12 +30,12 @@ TagManager:
   - UI
   - 
   - 
+  - Carbine
+  - Player
   - Ground
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Environment
+  - Danger
+  - Checkpoints
   - 
   - 
   - 
@@ -42,6 +55,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Foreground
+    uniqueID: 2195808557
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

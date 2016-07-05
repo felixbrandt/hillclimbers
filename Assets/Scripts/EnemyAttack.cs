@@ -6,6 +6,7 @@ public class EnemyAttack : MonoBehaviour {
 	public float range = 0f;
 	public int ad=10;
 	public float cooldown=0.5f;
+	public AudioClip inSight;
 
 	public Animator animator;
 	GameObject player;
@@ -15,6 +16,8 @@ public class EnemyAttack : MonoBehaviour {
 	float timer;
 	bool inRange =false;
 
+	AudioSource enemyAudio;
+
 
 	// Use this for initialization
 	void Awake () {
@@ -22,6 +25,7 @@ public class EnemyAttack : MonoBehaviour {
 		ph = player.GetComponent<PlayerHealth> ();
 		//eh = GetComponent<EnemyHealth> ();
 		animator=GetComponent<Animator>();
+		enemyAudio = GetComponent<AudioSource> ();
 	}
 	void Update()
 	{
@@ -29,6 +33,15 @@ public class EnemyAttack : MonoBehaviour {
 		if (timer >= cooldown && inRange) {
 			Attack ();	
 		}
+	}
+	void OnTriggerEnter2D(Collider2D other)
+	{
+			if(other.CompareTag("Player"))
+			{
+				enemyAudio.clip = inSight;
+				enemyAudio.Play();
+			}
+				
 	}
 	void OnTriggerStay2D(Collider2D other)
 	{
