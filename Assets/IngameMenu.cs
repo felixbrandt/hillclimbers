@@ -65,6 +65,8 @@ public class IngameMenu : MonoBehaviour {
     public void Respawn()
     {
         player.transform.position = player.GetComponent<ItemController>().checkpoint;
+        player.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+        player.GetComponent<Animator>().SetTrigger("Respawn");
         respawnMenu.GetComponent<Canvas>().enabled = false;
         respawnMenu.transform.FindChild("Btn_respawn").GetComponent<Button>().enabled = false;
         respawnMenu.transform.FindChild("Btn_main_menu").GetComponent<Button>().enabled = false;
