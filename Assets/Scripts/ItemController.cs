@@ -4,7 +4,6 @@ using System.Collections;
 
 public class ItemController : MonoBehaviour {
 
-	public AudioClip icing;
     public GameObject[] weapons = new GameObject[2];
     public GameObject[] tools = new GameObject[2];
     public PlayerHealth health;
@@ -21,9 +20,6 @@ public class ItemController : MonoBehaviour {
 	private GameObject currentItem;
 
 
-	AudioSource playerAudio;
-
-
     // Use this for initialization
     void Start() {
         checkpoint = GameObject.Find("Checkpoints").transform.FindChild("StartingPosition").position;
@@ -34,7 +30,6 @@ public class ItemController : MonoBehaviour {
         toolSprite1 = GameObject.Find("HUD/Items/ToolSlots").GetComponentsInChildren<Button>()[0];
         toolSprite2 = GameObject.Find("HUD/Items/ToolSlots").GetComponentsInChildren<Button>()[1];
         Activate(1);
-		playerAudio = GetComponent<AudioSource> ();
     }
 	
 	// Update is called once per frame
@@ -62,11 +57,9 @@ public class ItemController : MonoBehaviour {
 
 		if (collider.CompareTag("icicleTrap"))
 		{
-			playerAudio.clip = icing;
-			playerAudio.volume = 0.3f;
-			playerAudio.Play ();
-			collider.gameObject.GetComponentInChildren<Animator> ().SetTrigger ("Falling");
-			playerAudio.volume = 1f;
+			collider.gameObject.GetComponent<AudioSource>().PlayDelayed(0.5f);
+            collider.gameObject.GetComponentInChildren<Animator> ().SetTrigger ("Falling");
+            collider.enabled = false;
 		}
 
 
@@ -169,16 +162,23 @@ public class ItemController : MonoBehaviour {
 			}
 		}
 
+        if (collider.CompareTag("enemySpawn"))
+        {
+            GameObject.Find("Yeti").gameObject.GetComponent<EnemyAttack>().enabled = true;
+            GameObject.Find("Yeti").gameObject.GetComponent<EnemyWalk>().enabled = true;
+        }
 
-            if (collider.CompareTag("exit1"))
+        if (collider.CompareTag("exit1"))
             {
                 GameObject.Find("MenuManager").GetComponent<IngameMenu>().EndGame(1);
+            GetComponent<WalkingScript>().enabled = false;
             }
 
             if (collider.CompareTag("exit2"))
             {
                 GameObject.Find("MenuManager").GetComponent<IngameMenu>().EndGame(2);
-            }
+            GetComponent<WalkingScript>().enabled = false;
+        }
 
         if (collider.CompareTag("checkpoint1"))
         {

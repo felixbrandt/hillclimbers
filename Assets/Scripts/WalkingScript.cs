@@ -7,7 +7,6 @@ public class WalkingScript : MonoBehaviour {
     public float speed = 10f;
     public int jumpHeight = 300;
     public int fallHeight = 0;
-
     public bool grounded = false;
     public Transform groundCheck;
     float groundRadius = 0.2f;
@@ -15,6 +14,7 @@ public class WalkingScript : MonoBehaviour {
     public Grapplinghook hook;
     public bool walking;
     public PlayerHealth health;
+    public AudioSource walkAudio;
 
     Rigidbody2D rb2d;
 
@@ -22,12 +22,14 @@ public class WalkingScript : MonoBehaviour {
     {
         rb2d = GetComponent<Rigidbody2D>();
         health = GetComponent<PlayerHealth>();
+        walkAudio = GetComponents<AudioSource>()[1];
     }
 	
 	// Update is called once per frame
 
     void FixedUpdate()
     {
+  
         if (walking == true){
             animator.SetBool("Walking", true);
         }
@@ -41,9 +43,15 @@ public class WalkingScript : MonoBehaviour {
         grounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
         animator.SetBool("Jumping", !grounded);
 
+        if (grounded == false || walking == false)
+        {
+            walkAudio.Stop();
+        }
+
         //FALL DAMAGE
         if (grounded == false)
         {
+  
             fallHeight++;
         }
         if (grounded == true && (fallHeight >= 90 && fallHeight <= 139))
@@ -68,6 +76,12 @@ public class WalkingScript : MonoBehaviour {
                 if (grounded)
                 {
                     walking = true;
+                    if (!walkAudio.isPlaying)
+                    {
+                        walkAudio.Play();
+                    }
+                        
+
                 }
                 transform.Translate(Vector3.right * Time.deltaTime * speed);
                 if (Input.GetAxis("Horizontal") < 0)

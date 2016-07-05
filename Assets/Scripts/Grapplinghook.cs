@@ -60,8 +60,7 @@ using UnityEngine;
         {
             if (Input.GetMouseButtonDown(0))
             {
-				playerAudio.clip = swoosh;
-				playerAudio.Play ();
+
                 var mousePosition = Input.mousePosition;
                 mousePosition.z = -Camera.main.transform.position.z;
                 var worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
@@ -71,7 +70,10 @@ using UnityEngine;
                 var distance = Vector3.Distance(transform.position, hit.point);
                 if (hit.collider != null && distance <= Length)
             {
-                    _line.SetVertexCount(2);
+                playerAudio.clip = swoosh;
+                playerAudio.volume = 0.3f;
+                playerAudio.Play();
+                _line.SetVertexCount(2);
                     _line.SetPosition(0, hit.point);
                     _line.SetPosition(1, transform.position);
                     _line.gameObject.SetActive(true);

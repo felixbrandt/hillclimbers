@@ -40,8 +40,11 @@ public class EnemyAttack : MonoBehaviour {
 			if(other.CompareTag("Player"))
 			{
 				enemyAudio.clip = inSight;
-				enemyAudio.volume = 0.8f;
-				enemyAudio.Play();
+            if (!enemyAudio.isPlaying)
+            {
+                enemyAudio.Play();
+            }
+				
 			}
 				
 	}
@@ -66,8 +69,10 @@ public class EnemyAttack : MonoBehaviour {
 			ph.TakeDamage (ad);
 		}
 		enemyAudio.clip = attack;
-		enemyAudio.volume = 0.8f;
-		enemyAudio.Play ();
+        if (!enemyAudio.isPlaying)
+        {
+            enemyAudio.Play();
+        }
         animator.SetTrigger("Attacking");
         animator.SetBool("Walking", false);
 	}

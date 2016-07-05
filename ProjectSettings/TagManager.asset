@@ -21,6 +21,7 @@ TagManager:
   - checkpoint4
   - abyss
   - knife
+  - enemySpawn
   layers:
   - Default
   - TransparentFX
@@ -36,7 +37,7 @@ TagManager:
   - Environment
   - Danger
   - Checkpoints
-  - 
+  - Climbstone
   - 
   - 
   - 
