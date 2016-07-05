@@ -7,9 +7,8 @@ public class WalkingScript : MonoBehaviour {
     public float speed = 10f;
     public int jumpHeight = 300;
     public int fallHeight = 0;
-	public AudioClip walkingClip;
 
-    bool grounded = false;
+    public bool grounded = false;
     public Transform groundCheck;
     float groundRadius = 0.2f;
     public LayerMask whatIsGround;
@@ -17,12 +16,10 @@ public class WalkingScript : MonoBehaviour {
     public bool walking;
     public PlayerHealth health;
 
-	AudioSource playerAudio;
     Rigidbody2D rb2d;
 
     void Start ()
     {
-		playerAudio = GetComponent<AudioSource> ();
         rb2d = GetComponent<Rigidbody2D>();
         health = GetComponent<PlayerHealth>();
     }
@@ -33,8 +30,6 @@ public class WalkingScript : MonoBehaviour {
     {
         if (walking == true){
             animator.SetBool("Walking", true);
-			playerAudio.clip = walkingClip;
-			playerAudio.Play();
         }
         else
         {
