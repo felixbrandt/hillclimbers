@@ -4,7 +4,7 @@ using System.Collections;
 
 public class ItemController : MonoBehaviour {
 
-
+	public AudioClip icing;
     public GameObject[] weapons = new GameObject[2];
     public GameObject[] tools = new GameObject[2];
     public PlayerHealth health;
@@ -21,6 +21,7 @@ public class ItemController : MonoBehaviour {
 	private GameObject currentItem;
 
 
+	AudioSource playerAudio;
 
 
     // Use this for initialization
@@ -33,6 +34,7 @@ public class ItemController : MonoBehaviour {
         toolSprite1 = GameObject.Find("HUD/Items/ToolSlots").GetComponentsInChildren<Button>()[0];
         toolSprite2 = GameObject.Find("HUD/Items/ToolSlots").GetComponentsInChildren<Button>()[1];
         Activate(1);
+		playerAudio = GetComponent<AudioSource> ();
     }
 	
 	// Update is called once per frame
@@ -60,7 +62,11 @@ public class ItemController : MonoBehaviour {
 
 		if (collider.CompareTag("icicleTrap"))
 		{
+			playerAudio.clip = icing;
+			playerAudio.volume = 0.3f;
+			playerAudio.Play ();
 			collider.gameObject.GetComponentInChildren<Animator> ().SetTrigger ("Falling");
+			playerAudio.volume = 1f;
 		}
 
 

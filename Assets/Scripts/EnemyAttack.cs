@@ -7,6 +7,7 @@ public class EnemyAttack : MonoBehaviour {
 	public int ad=10;
 	public float cooldown=0.5f;
 	public AudioClip inSight;
+	public AudioClip attack;
 
 	public Animator animator;
 	GameObject player;
@@ -39,6 +40,7 @@ public class EnemyAttack : MonoBehaviour {
 			if(other.CompareTag("Player"))
 			{
 				enemyAudio.clip = inSight;
+				enemyAudio.volume = 0.8f;
 				enemyAudio.Play();
 			}
 				
@@ -63,7 +65,9 @@ public class EnemyAttack : MonoBehaviour {
 		if (ph.currentHealth > 0) {
 			ph.TakeDamage (ad);
 		}
-
+		enemyAudio.clip = attack;
+		enemyAudio.volume = 0.8f;
+		enemyAudio.Play ();
         animator.SetTrigger("Attacking");
         animator.SetBool("Walking", false);
 	}

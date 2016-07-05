@@ -4,6 +4,7 @@ using UnityEngine;
 
     public class Grapplinghook : MonoBehaviour
     {
+		public AudioClip swoosh;
         public float Length = 4;
         public LayerMask mask = ~(1 << 9);
         WalkingScript ws;
@@ -18,7 +19,7 @@ using UnityEngine;
         private GameObject _previousGrapple;
         private float _previousDistance = -1;
         private DistanceJoint2D _joint;
-
+		AudioSource playerAudio;
 
         void Start()
         {
@@ -43,6 +44,7 @@ using UnityEngine;
 
             _joint = gameObject.AddComponent<DistanceJoint2D>();
             _joint.enabled = false;
+			playerAudio = GetComponent<AudioSource> ();
         }
 
         void Update()
@@ -58,6 +60,8 @@ using UnityEngine;
         {
             if (Input.GetMouseButtonDown(0))
             {
+				playerAudio.clip = swoosh;
+				playerAudio.Play ();
                 var mousePosition = Input.mousePosition;
                 mousePosition.z = -Camera.main.transform.position.z;
                 var worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
