@@ -22385,6 +22385,10 @@ Prefab:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 6142436, guid: 46c05ca2217ff9b438a0be5cc9d007bc, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11466408, guid: 46c05ca2217ff9b438a0be5cc9d007bc, type: 2}
     - {fileID: 11451538, guid: 46c05ca2217ff9b438a0be5cc9d007bc, type: 2}
