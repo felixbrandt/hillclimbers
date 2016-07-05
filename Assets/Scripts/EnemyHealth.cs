@@ -20,7 +20,20 @@ public class EnemyHealth : MonoBehaviour {
 		else {
 			anim.SetBool ("Walking", false);
 			anim.SetTrigger ("Die");
-			Destroy (gameObject);
+            
+            // Disable all colliders -> Yeti falls off
+            foreach (var collider in gameObject.GetComponents<BoxCollider2D>())
+            {
+                collider.enabled = false;
+            }
+
+            // Disable Scripts
+            gameObject.GetComponent<EnemyWalk>().enabled = false;
+            gameObject.GetComponent<EnemyAttack>().enabled = false;
+            this.enabled = false;
+
+            // Destroy Object in 3 seconds (probably off screen by then)
+            Destroy(gameObject, 3);
 		}
 	}
 }
