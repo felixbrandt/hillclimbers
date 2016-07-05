@@ -36,9 +36,9 @@ public class EnemyHealth : MonoBehaviour {
             		gameObject.GetComponent<EnemyAttack>().enabled = false;
             		this.enabled = false;
 	
-			// Play sound
-		    	enemyAudio.clip = dying;
-	    		enemyAudio.play();
+						// Play sound
+			    	enemyAudio.clip = dying;
+		    		enemyAudio.Play();
 
             		// Destroy Object in 3 seconds (probably off screen by then)
             		Destroy(gameObject, 3);
