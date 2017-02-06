@@ -7,7 +7,7 @@ using UnityEngine;
         public float JumpForce = 20;
         WalkingScript ws;
 
-    public bool IsOnRope = false;
+        public bool IsOnRope = false;
         private readonly List<GameObject> _ropeSegments = new List<GameObject>();
 
         private GameObject _prevTop;
@@ -21,7 +21,7 @@ using UnityEngine;
         }
         void Update()
         {
-            if (IsOnRope)
+        if (IsOnRope)
             {
             GetComponent<Rigidbody2D>().gravityScale = 0;
             GetComponent<WalkingScript>().enabled = false;
@@ -32,12 +32,12 @@ using UnityEngine;
                 GetComponent<Rigidbody2D>().gravityScale = 1;
                 GetComponent<WalkingScript>().enabled = true;
                 IsOnRope = false;
+                GetComponent<Animator>().SetBool("OnRope", false);
                 GetComponent<Rigidbody2D>().AddForce(new Vector2(0, JumpForce));
             }
 
             // Grab the middle rope segment player collides with since this would be closest to player's center
             GameObject top = null;
-
                 if (Mathf.Abs(Input.GetAxisRaw("Vertical")) > 0 || _prevTop == null)
                 {
                     var all = _ropeSegments.OrderByDescending(x => x.transform.position.y);
@@ -54,7 +54,6 @@ using UnityEngine;
                     // Climb rope
                     GetComponent<Rigidbody2D>().velocity = top.GetComponent<Rigidbody2D>().velocity + 
                         new Vector2(top.transform.up.x,Input.GetAxisRaw("Vertical")*Speed*top.transform.up.y);
-
                 }
 
                 // Move towards middle of rope if you've somehow moved off of it
@@ -96,8 +95,28 @@ using UnityEngine;
         {
             if ((IsOnRope || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) && col.tag == "Rope")
             {
-            transform.position = new Vector2(col.gameObject.transform.position.x, transform.position.y);
+            
+            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) {
+                GetComponent<Animator>().SetBool("ClimbingUp", true);
+            } else
+            {
+                GetComponent<Animator>().SetBool("ClimbingUp", false);
+            }
+            // For placing the player correctly on the rope (Animation as to fit)
+            float offset;
+            if (transform.rotation.y == -1)
+            {
+                // Facing left
+                offset = -0.25f;
+            } else
+            {
+                // Facing right
+                offset = 0.25f;
+            }
+
+            transform.position = new Vector2(col.gameObject.transform.position.x-offset, transform.position.y);
                 IsOnRope = true;
+                GetComponent<Animator>().SetBool("OnRope", true);
                 if (!_ropeSegments.Contains(col.gameObject))
                     _ropeSegments.Add(col.gameObject);
             }

@@ -40,7 +40,11 @@ public class EnemyAttack : MonoBehaviour {
 			if(other.CompareTag("Player"))
 			{
 				enemyAudio.clip = inSight;
-				enemyAudio.Play();
+            if (!enemyAudio.isPlaying)
+            {
+                enemyAudio.Play();
+            }
+				
 			}
 				
 	}
@@ -64,7 +68,11 @@ public class EnemyAttack : MonoBehaviour {
 		if (ph.currentHealth > 0) {
 			ph.TakeDamage (ad);
 		}
-
+		enemyAudio.clip = attack;
+        if (!enemyAudio.isPlaying)
+        {
+            enemyAudio.Play();
+        }
         animator.SetTrigger("Attacking");
 		enemyAudio.clip = attack;
 		enemyAudio.Play ();

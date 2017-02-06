@@ -8,20 +8,23 @@ public class FootStepsOn : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		playerAudio = GetComponent<AudioSource> ();
-		ws = GetComponent<WalkingScript> (); 
+		ws = GetComponent<WalkingScript> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.D)|| Input.GetKeyDown (KeyCode.A) ) {
+		if (Input.GetKeyDown (KeyCode.D) || Input.GetKeyDown (KeyCode.A)) {
 			playerAudio.clip = step;
+			playerAudio.volume = 1f;
 			playerAudio.Play ();
-		} else if (Input.GetKeyUp (KeyCode.D) || Input.GetKeyUp (KeyCode.A)) {
-			playerAudio.clip = step;
-			playerAudio.Stop ();
-		} else if (ws.getGrounded () == false) {
+		}	
+		else if (Input.GetKeyUp (KeyCode.D) || Input.GetKeyUp (KeyCode.A)) {
 			playerAudio.clip = step;
 			playerAudio.Stop ();
 		}
+		else if (ws.grounded==false) {
+			playerAudio.clip = step;
+			playerAudio.Stop ();
+		}	
 	}
 }
